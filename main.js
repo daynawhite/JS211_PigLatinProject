@@ -11,9 +11,39 @@ const rl = readline.createInterface({
 });
 
 
+
 const pigLatin = (word) => {
 
-  // Your code here
+  const consonants = 'bcdfghjklmnpqrstvwxyz'
+
+  const fixedWord = word.toLowerCase().trim();
+  console.log(fixedWord)
+  const letter1 = fixedWord.charAt(0);
+  console.log('first letter is: ' + letter1);
+  const letter2 = fixedWord.charAt(1);
+  console.log('second letter is: ' + letter2);
+
+
+  // Function to determine whether a letter is consonant.
+  const isConsonant = (letter) => {
+    const vowels = 'aeiou'
+    for (let i = 0; i < vowels.length; i++) {
+      if (letter === vowels[i]) {
+        ;
+      } else return true
+    } 
+  }  
+
+  isConsonant(letter2)
+
+  if (isConsonant(letter2)) {console.log("It's a Consonant.")
+} else (console.log("It's a vowel."))
+
+  
+   
+
+  // Determine if the word is simple: first letter consonant, second letter vowel.
+  
 
 }
 

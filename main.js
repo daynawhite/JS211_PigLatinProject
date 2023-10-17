@@ -30,19 +30,39 @@ if (isConsonant(letter2)) {console.log('second letter is a consonant')
 
 // isSimple(letter1,letter2)
 
-if (isSimple(letter1,letter2)) {
 // Convert word to array:
-let simpleArray = fixedWord.split("");
-// Remove the first letter of the word:
-simpleArray = simpleArray.splice(0,1)
-// Add first letter to the end and add "ay":
-const simplePigArray = simpleArray.push(letter1,'ay');
-// Convert array to string:
-const simplePigWord = simplePigArray.toString();
+let myArray = fixedWord.split("");
+console.log(myArray)
 
-console.log(simplePigWord)
+// Translate simple word:
+if (isSimple(letter1,letter2)) {
+// Remove the first letter of the word:
+myArray.splice(0,1)
+console.log(myArray)
+// Add first letter to the end and add "ay":
+myArray.push(letter1,'ay');
+// console.log(myArray)
 }
+
+// Translate word that begins with a vowel:
+if (!isConsonant(letter1)) {
+myArray.push('yay');
+// console.log(myArray)
 }
+
+// Translate a complex word (begins with 2 consonants):
+if (isComplex(letter1, letter2)) {
+  myArray.splice(0,2)
+  myArray.push(letter1, letter2, 'ay')
+}
+
+// Convert array to word:
+let answer = myArray.join("")
+// console.log(myArray.join(""))
+console.log(answer)
+return answer
+}
+
 
   // Function to determine whether a letter is consonant.
   const isConsonant = (letter) => {
@@ -59,7 +79,12 @@ console.log(simplePigWord)
       return true
     } else {console.log('the word is not simple')}
   }
-
+//  Determine if the word is complex: begins with 2 consonants:
+const isComplex = (firstLetter, secondLetter) => {
+  if (isConsonant(firstLetter) && isConsonant(secondLetter)) {
+    return true
+  }
+}
 
 
 // the first function called in the program to get an input from the user

@@ -10,42 +10,57 @@ const rl = readline.createInterface({
   output: process.stdout
 });
 
-
+const consonants = 'bcdfghjklmnpqrstvwxyz'
+const vowels = 'aeiou'
 
 const pigLatin = (word) => {
 
-  const consonants = 'bcdfghjklmnpqrstvwxyz'
-
   const fixedWord = word.toLowerCase().trim();
-  console.log(fixedWord)
+  // console.log(fixedWord)
   const letter1 = fixedWord.charAt(0);
-  console.log('first letter is: ' + letter1);
+  // console.log('first letter is: ' + letter1);
   const letter2 = fixedWord.charAt(1);
-  console.log('second letter is: ' + letter2);
+  // console.log('second letter is: ' + letter2);
 
+  if (isConsonant(letter1)) {console.log('first letter is a consonant')
+} else {console.log('first letter is a vowel')}
+
+if (isConsonant(letter2)) {console.log('second letter is a consonant')
+} else {console.log('second letter is a vowel')}
+
+// isSimple(letter1,letter2)
+
+if (isSimple(letter1,letter2)) {
+// Convert word to array:
+let simpleArray = fixedWord.split("");
+// Remove the first letter of the word:
+simpleArray = simpleArray.splice(0,1)
+// Add first letter to the end and add "ay":
+const simplePigArray = simpleArray.push(letter1,'ay');
+// Convert array to string:
+const simplePigWord = simplePigArray.toString();
+
+console.log(simplePigWord)
+}
+}
 
   // Function to determine whether a letter is consonant.
   const isConsonant = (letter) => {
-    const vowels = 'aeiou'
-    for (let i = 0; i < vowels.length; i++) {
-      if (letter === vowels[i]) {
-        ;
-      } else return true
+    for (let i = 0; i < consonants.length; i++) {
+      if (letter === consonants[i]) 
+        return true;
     } 
   }  
 
-  isConsonant(letter2)
-
-  if (isConsonant(letter2)) {console.log("It's a Consonant.")
-} else (console.log("It's a vowel."))
-
-  
-   
-
   // Determine if the word is simple: first letter consonant, second letter vowel.
-  
+  const isSimple = (firstLetter, secondLetter) => {
+    if (isConsonant(firstLetter) && !isConsonant(secondLetter)) {
+      // console.log('the word is simple')
+      return true
+    } else {console.log('the word is not simple')}
+  }
 
-}
+
 
 // the first function called in the program to get an input from the user
 // to run the function use the command: node main.js

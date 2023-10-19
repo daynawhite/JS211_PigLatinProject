@@ -21,12 +21,13 @@ const pigLatin = (word) => {
   // console.log('first letter is: ' + letter1);
   const letter2 = fixedWord.charAt(1);
   // console.log('second letter is: ' + letter2);
+  const letter3 = fixedWord.charAt(2);
 
-  if (isConsonant(letter1)) {console.log('first letter is a consonant')
-} else {console.log('first letter is a vowel')}
+//   if (isConsonant(letter1)) {console.log('first letter is a consonant')
+// } else {console.log('first letter is a vowel')}
 
-if (isConsonant(letter2)) {console.log('second letter is a consonant')
-} else {console.log('second letter is a vowel')}
+// if (isConsonant(letter2)) {console.log('second letter is a consonant')
+// } else {console.log('second letter is a vowel')}
 
 // isSimple(letter1,letter2)
 
@@ -34,8 +35,16 @@ if (isConsonant(letter2)) {console.log('second letter is a consonant')
 let myArray = fixedWord.split("");
 console.log(myArray)
 
+// Translate word that begins with a vowel:
+if (!isConsonant(letter1)) {
+myArray.push('yay');
+// console.log(myArray)
+} 
+
+else
 // Translate simple word:
 if (isSimple(letter1,letter2)) {
+  console.log('the word is simple')
 // Remove the first letter of the word:
 myArray.splice(0,1)
 console.log(myArray)
@@ -44,16 +53,16 @@ myArray.push(letter1,'ay');
 // console.log(myArray)
 }
 
-// Translate word that begins with a vowel:
-if (!isConsonant(letter1)) {
-myArray.push('yay');
-// console.log(myArray)
-}
-
-// Translate a complex word (begins with 2 consonants):
-if (isComplex(letter1, letter2)) {
+else
+// Translate a complex word (begins with 2 or 3 consonants):
+if (isComplex1(letter1, letter3)) {
+  console.log('the word starts with 2 consonants then a vowel')
   myArray.splice(0,2)
   myArray.push(letter1, letter2, 'ay')
+} else if (isComplex2(letter1, letter3)) {
+  console.log('the word starts with 3 consonants')
+  myArray.splice(0,3)
+  myArray.push(letter1, letter2, letter3, 'ay')
 }
 
 // Convert array to word:
@@ -62,7 +71,7 @@ let answer = myArray.join("")
 console.log(answer)
 return answer
 }
-
+// end of "umbrella" translation function
 
   // Function to determine whether a letter is consonant.
   const isConsonant = (letter) => {
@@ -79,9 +88,14 @@ return answer
       return true
     } else {console.log('the word is not simple')}
   }
-//  Determine if the word is complex: begins with 2 consonants:
-const isComplex = (firstLetter, secondLetter) => {
-  if (isConsonant(firstLetter) && isConsonant(secondLetter)) {
+//  Determine if the word is complex: begins with 2 or 3 consonants:
+const isComplex1 = (firstLetter, thirdLetter) => {
+  if (isConsonant(firstLetter) && !isConsonant(thirdLetter)) {
+    return true
+  } 
+}
+const isComplex2 = (firstLetter, thirdLetter) => {
+  if (isConsonant(firstLetter) && isConsonant(thirdLetter)) {
     return true
   }
 }

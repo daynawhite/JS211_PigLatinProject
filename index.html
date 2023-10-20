@@ -6,14 +6,16 @@
     <script src="main.js"></script>
   </head>
   <body>
-    <h1>Hello World!</h1>
+    <h1>English to Pig Latin Word Translator</h1>
     <hr/>
-    <div id="display-element"></div>
     <form>
       <input id="user-input" type="text">
       <!-- How do you get this input sent to the pigLatin() function? -->
-      <button onclick="pigLatin()">Translate</button>
+      <button id="translateButton" onclick="pigLatin()">Translate</button>
     </form>  
+    <h2>Pig Latin Translation:</h2>
+    <div id="translation"></div>
+    <button id="reset">Start Over</button>
     <hr/>
   </body>
 </html>

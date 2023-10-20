@@ -10,8 +10,24 @@ const rl = readline.createInterface({
   output: process.stdout
 });
 
+const userInput = document.getElementById('user-input')
+const submitButton = document.getElementbyId('translateButton')
+const translation = document.getElementById('translation')
+const reset = document.getElementById('reset')
+
 const consonants = 'bcdfghjklmnpqrstvwxyz'
 const vowels = 'aeiou'
+
+userInput.addEventListener('keyup', (event) => {
+  input = event.target.value
+})
+submitButton.addEventListener('click', (trans => {
+  let pWord = pigLatin(userInput)}))
+
+reset.addEventListener('click', (clear) => {
+  userInput.value = '';
+  translation.innertext = ''
+})
 
 const pigLatin = (word) => {
 
@@ -23,25 +39,17 @@ const pigLatin = (word) => {
   // console.log('second letter is: ' + letter2);
   const letter3 = fixedWord.charAt(2);
 
-//   if (isConsonant(letter1)) {console.log('first letter is a consonant')
-// } else {console.log('first letter is a vowel')}
-
-// if (isConsonant(letter2)) {console.log('second letter is a consonant')
-// } else {console.log('second letter is a vowel')}
-
-// isSimple(letter1,letter2)
 
 // Convert word to array:
 let myArray = fixedWord.split("");
 console.log(myArray)
 
 // Translate word that begins with a vowel:
-if (!isConsonant(letter1)) {
-myArray.push('yay');
-// console.log(myArray)
-} 
+// if (!isConsonant(letter1)) {
+// myArray.push('yay');
+// } 
+// else
 
-else
 // Translate simple word:
 if (isSimple(letter1,letter2)) {
   console.log('the word is simple')
@@ -52,19 +60,20 @@ console.log(myArray)
 myArray.push(letter1,'ay');
 // console.log(myArray)
 }
-
 else
 // Translate a complex word (begins with 2 or 3 consonants):
 if (isComplex1(letter1, letter3)) {
-  console.log('the word starts with 2 consonants then a vowel')
+  // console.log('the word starts with 2 consonants then a vowel')
   myArray.splice(0,2)
   myArray.push(letter1, letter2, 'ay')
+
 } else if (isComplex2(letter1, letter3)) {
-  console.log('the word starts with 3 consonants')
+  // console.log('the word starts with 3 consonants')
   myArray.splice(0,3)
   myArray.push(letter1, letter2, letter3, 'ay')
-}
-
+} else {
+  myArray.push('yay');
+} 
 // Convert array to word:
 let answer = myArray.join("")
 // console.log(myArray.join(""))
@@ -86,7 +95,8 @@ return answer
     if (isConsonant(firstLetter) && !isConsonant(secondLetter)) {
       // console.log('the word is simple')
       return true
-    } else {console.log('the word is not simple')}
+    }
+    //  else {console.log('the word is not simple')}
   }
 //  Determine if the word is complex: begins with 2 or 3 consonants:
 const isComplex1 = (firstLetter, thirdLetter) => {
@@ -95,7 +105,7 @@ const isComplex1 = (firstLetter, thirdLetter) => {
   } 
 }
 const isComplex2 = (firstLetter, thirdLetter) => {
-  if (isConsonant(firstLetter) && isConsonant(thirdLetter)) {
+  if ((isConsonant(firstLetter) && isConsonant(thirdLetter)) && (!thirdLetter == "y")) {
     return true
   }
 }

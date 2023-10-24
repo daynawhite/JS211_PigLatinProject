@@ -7,35 +7,54 @@ const consonants = 'bcdfghjklmnpqrstvwxyz'
       return true;
   } 
 }  
-// Determine if a word is simple: first letter consonant, second letter vowel.
+
+
+// const test = (firstLetter,secondLetter,thirdLetter) => {
+//   if (!isConsonant(firstLetter)) {
+//     console.log('the word starts with a vowel')
+// }
+// else 
+// {if (!isConsonant(secondLetter)) {
+//   console.log('the word is simple')
+// }
+// else {}
+// }
+// }
+
+// Determine if a word starts with a vowel
+
+// Determine if a word is simple: first letter consonant, second letter vowel or 'y'.
 const isSimple = (firstLetter, secondLetter) => {
-  if (isConsonant(firstLetter) && !isConsonant(secondLetter)) {
+  if (isConsonant(firstLetter) && (!isConsonant(secondLetter) || secondLetter === 'y') ){
     return true
   }
-   else {console.log('the word is complex or starts with a vowel')}
 }
-//  Determine if a word is complex: begins with 2 or 3 consonants:
-const isComplex1 = (firstLetter, thirdLetter) => {
-if (isConsonant(firstLetter) && !isConsonant(thirdLetter)) {
+//  Determine if a word begins with 2 consonants :
+const twoConsStart = (firstLetter, secondLetter) => {
+  if (isConsonant(firstLetter) && isConsonant(secondLetter) && !secondLetter==='y'
+  // && (!isConsonant(thirdLetter) || thirdLetter==='y')
+ ) {
   return true
-} else {console.log('the word does not start with a 2-consonant cluster')}
-}
-const isComplex2 = (firstLetter, thirdLetter) => {
-if (isConsonant(firstLetter) && isConsonant(thirdLetter)) {
-  return true
-} else {console.log('the word does not start with a 3-consonant cluster')}
-}
-// Special cases caused by the letter "Y"
-const isSpecialOne = (firstLetter, secondLetter) => {
-  if (isConsonant(firstLetter) && (secondLetter === "y")) {
+} }
+
+//  Determine if a word begins with 2 consonants then a vowel or "y"
+const isComplex1 = (firstLetter, secondLetter, thirdLetter) => {
+  if (twoConsStart(firstLetter,secondLetter) && !isConsonant(thirdLetter)) {
     return true
-  } else {console.log('It does not start with consonant-then-Y')}
+  }
 }
-const isSpecialTwo = (firstLetter, secondLetter, thirdLetter) => {
-  if (isConsonant(firstLetter, secondLetter) && thirdLetter === 'y'){
- return true
-} else {console.log('the word is not rhythm')}}
-// && (!thirdLetter == "y")
+// || thirdLetter==='y')
+// //  Determine if a word is complex: begins with 3 consonants, not including 'y':
+const isComplex2 = (firstLetter,secondLetter,thirdLetter) => {
+  if (twoConsStart(firstLetter,secondLetter) && (isConsonant(thirdLetter) && !thirdLetter==='y')) {
+   return true
+  }
+  }
+// const isComplex2 = (firstLetter, thirdLetter) => {
+//   if (isConsonant(firstLetter) && isConsonant(thirdLetter)) {
+//   return true
+// } }
+
 
 // FUNCTION TO TRANSLATE WORD TO PIG LATIN:
 function pigLatin(word) {
@@ -63,20 +82,21 @@ console.log(myArray)
 myArray.push(letter1,'ay');
 // console.log(myArray)
 }
-else
+ else if (!isConsonant(letter1)){
+  myArray.push('yay');
+ };
 // Translate a complex word (begins with 2 or 3 consonants):
-if (isComplex1(letter1, letter3)) {
-  // console.log('the word starts with 2 consonants then a vowel')
+// if (twoConsStart) {console.log('the word starts with 2 consonants')}
+
+if (isComplex1(letter1, letter2, letter3)) {
+  console.log('the word starts with 2 consonants then a vowel or "y"')
   myArray.splice(0,2)
   myArray.push(letter1, letter2, 'ay')
 
-} else if (isComplex2(letter1, letter3)) {
+} else if (isComplex2(letter1, letter2, letter3)) {
   console.log('the word starts with 3 consonants')
   myArray.splice(0,3)
   myArray.push(letter1, letter2, letter3, 'ay')
-
-} else {
-  myArray.push('yay');
 } 
 // Convert new array to word:
 let answer = myArray.join("")
